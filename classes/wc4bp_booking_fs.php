@@ -67,28 +67,32 @@ class wc4bp_booking_fs {
             // Include Freemius SDK.
             require_once WC4BP_ABSPATH_CLASS_PATH . 'includes/freemius/start.php';
 
-            $wc4bp_booking_fs = fs_dynamic_init( array(
-                'id'                  => '1227',
-                'slug'                => 'wc4bp-booking',
-                'type'                => 'plugin',
-                'public_key'          => 'pk_84e39dee252f447729db11f381700',
-                'is_premium'          => true,
-                'is_premium_only'     => true,
-                'has_premium_version' => true,
-                'has_paid_plans'      => true,
-                'is_org_compliant'    => false,
-                'parent'              => array(
-                    'id'         => '425',
-                    'slug'       => 'wc4bp',
-                    'public_key' => 'pk_71d28f28e3e545100e9f859cf8554',
-                    'name'       => 'WC4BP',
-                ),
-                'menu'                => array(
-                    'first-path'     => 'plugins.php',
-                    'support'        => false,
-                ),
-                'secret_key'          => 'sk_v7p)FPIQ&YV&ytn2@kS=V%R[(+!0V',
-            ) );
+	        try {
+		        $wc4bp_booking_fs = fs_dynamic_init( array(
+			        'id'                  => '1227',
+			        'slug'                => 'wc4bp-booking',
+			        'type'                => 'plugin',
+			        'public_key'          => 'pk_84e39dee252f447729db11f381700',
+			        'is_premium'          => true,
+			        'is_premium_only'     => true,
+			        'has_premium_version' => true,
+			        'has_paid_plans'      => true,
+			        'is_org_compliant'    => false,
+			        'parent'              => array(
+				        'id'         => '425',
+				        'slug'       => 'wc4bp',
+				        'public_key' => 'pk_71d28f28e3e545100e9f859cf8554',
+				        'name'       => 'WC4BP',
+			        ),
+			        'menu'                => array(
+				        'first-path' => 'plugins.php',
+				        'support'    => false,
+			        ),
+			        'secret_key'          => 'sk_v7p)FPIQ&YV&ytn2@kS=V%R[(+!0V',
+		        ) );
+	        } catch ( Freemius_Exception $e ) {
+
+	        }
         }
 
         return $wc4bp_booking_fs;

@@ -5,7 +5,7 @@
  * Description: WooCommerce for BuddyPress Booking - Integrate BuddyPress with WooCommerce Booking. Ideal for booking and membership sites such as premium support.
  * Author:      ThemeKraft
  * Author URI: https://themekraft.com/products/woocommerce-buddypress-integration/
- * Version:     1.1.0
+ * Version:     1.0.0
  * Licence:     GPLv3
  * Text Domain: wc4bp_booking
  * Domain Path: /languages
@@ -72,7 +72,7 @@ if ( ! class_exists( 'wc4bp_booking' ) ) {
                     $wc4bp_freemius = $wc4bp::getFreemius();
                     if ( ! empty( $wc4bp_freemius ) && $wc4bp_freemius->is_plan__premium_only( 'professional' ) ) {
                         if ( wc4bp_booking_required::is_woo_booking_active() && wc4bp_booking_required::is_woocommerce_active() ) {
-                            require_once WC4BP_SUBSCRIPTION_CLASSES_PATH . 'wc4bp_booking_manager.php';
+                            require_once WC4BP_BOOKING_CLASSES_PATH . 'wc4bp_booking_manager.php';
                             new wc4bp_booking_manager();
                         } else {
                             //In case we  want to print this warning
