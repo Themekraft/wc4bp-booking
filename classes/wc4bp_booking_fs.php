@@ -93,7 +93,6 @@ class wc4bp_booking_fs {
 				        'first-path'     => 'plugins.php',
 				        'support'        => false,
 			        ),
-			        'secret_key'          => 'sk_$ERaY(J$lwLErG>?)NQLT#fZvj*zD',
 		        ) );
 	        } catch ( Freemius_Exception $e ) {
 		        $wc4bp_booking_fs = false;
