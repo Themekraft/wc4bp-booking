@@ -69,15 +69,20 @@ class wc4bp_booking_fs {
 
 	        try {
 		        $wc4bp_booking_fs = fs_dynamic_init( array(
-			        'id'                  => '1227',
+			        'id'                  => '2225',
 			        'slug'                => 'wc4bp-booking',
 			        'type'                => 'plugin',
-			        'public_key'          => 'pk_84e39dee252f447729db11f381700',
+			        'public_key'          => 'pk_6a342256996424892f2248475ceec',
 			        'is_premium'          => true,
 			        'is_premium_only'     => true,
+			        // If your addon is a serviceware, set this option to false.
 			        'has_premium_version' => true,
 			        'has_paid_plans'      => true,
 			        'is_org_compliant'    => false,
+			        'trial'               => array(
+				        'days'               => 7,
+				        'is_require_payment' => false,
+			        ),
 			        'parent'              => array(
 				        'id'         => '425',
 				        'slug'       => 'wc4bp',
@@ -85,13 +90,13 @@ class wc4bp_booking_fs {
 				        'name'       => 'WC4BP',
 			        ),
 			        'menu'                => array(
-				        'first-path' => 'plugins.php',
-				        'support'    => false,
+				        'first-path'     => 'plugins.php',
+				        'support'        => false,
 			        ),
-			        'secret_key'          => 'sk_v7p)FPIQ&YV&ytn2@kS=V%R[(+!0V',
+			        'secret_key'          => 'sk_$ERaY(J$lwLErG>?)NQLT#fZvj*zD',
 		        ) );
 	        } catch ( Freemius_Exception $e ) {
-
+		        $wc4bp_booking_fs = false;
 	        }
         }
 

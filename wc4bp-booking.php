@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WC4BP -> Booking
  * Plugin URI:   https://github.com/Themekraft/wc4bp-booking
- * Description: WooCommerce for BuddyPress Booking - Integrate BuddyPress with WooCommerce Booking. Ideal for booking and membership sites such as premium support.
+ * Description: WooCommerce for BuddyPress Booking - Integrate BuddyPress with WooCommerce Booking. Get you Bookings inside BuddyPress Profile.
  * Author:      ThemeKraft
  * Author URI: https://themekraft.com/products/woocommerce-buddypress-integration/
  * Version:     1.0.0
