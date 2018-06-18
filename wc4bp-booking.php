@@ -106,7 +106,7 @@ if ( ! class_exists( 'wc4bp_booking' ) ) {
 		public function admin_notice_need_woo_booking() {
 
 			$class   = 'notice notice-warning';
-			$message = __( 'WC4BP -> Booking Need WooCommerce Booking and Woocommerce!', 'wc4bp_booking' );
+			$message = __( 'WC4BP -> Booking Need WooCommerce Booking and Woocommerce! One is not present, please check your dependencies. ', 'wc4bp_booking' );
 
 			printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
 		}
