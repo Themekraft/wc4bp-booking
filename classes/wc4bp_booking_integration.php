@@ -74,7 +74,7 @@ class wc4bp_booking_integration {
     public function wc4bp_booking_menu_items( $menu_items ) {
         // Add our menu item after the Orders tab if it exists, otherwise just add it to the end
         if ( array_key_exists( 'orders', $menu_items ) ) {
-            $menu_items = wcs_array_insert_after( 'orders', $menu_items, 'bookings', __( 'Bookings', 'woocommerce-bookings' ) );
+            $menu_items = wc4bp_array_insert_after( 'orders', $menu_items, 'bookings', __( 'Bookings', 'woocommerce-bookings' ) );
         } else {
             $menu_items['bookings'] = __( 'Bookings', 'woocommerce-bookings' );
         }
