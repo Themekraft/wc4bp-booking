@@ -1,4 +1,4 @@
-=== WooCommerce BuddyPress Integration ===
+=== WC4BP -> Booking ===
 
 Contributors: themekraft, svenl77, gfirem, garrett-eclipse, shabushabu, kishores, marin250189
 Tags: WooCommerce, BuddyPress, Shop, eCommerce, social networking, social shopping, customer, customer relation, achievements, support, product, vendor, marketplace, groups, support groups, profile, my account, my-account
