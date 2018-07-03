@@ -18,11 +18,11 @@ class wc4bp_booking_manager {
 	private $end_points;
 
 	public function __construct() {
-		require_once 'wc4bp_booking_log.php';
+		require_once 'class-wc4bp-booking-log.php';
 		new wc4bp_booking_log();
 		try {
 			//loading_dependency
-			require_once 'wc4bp_booking_integration.php';
+			require_once 'class-wc4bp-booking-integration.php';
 			new wc4bp_booking_integration();
 
 		} catch ( Exception $ex ) {

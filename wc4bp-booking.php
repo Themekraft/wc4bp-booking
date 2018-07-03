@@ -39,7 +39,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 if ( ! class_exists( 'wc4bp_booking' ) ) {
-	require_once dirname( __FILE__ ) . '/classes/wc4bp_booking_fs.php';
+	require_once dirname( __FILE__ ) . '/classes/class-wc4bp-booking-fs.php';
 	new wc4bp_booking_fs();
 
 	class wc4bp_booking {
@@ -63,7 +63,7 @@ if ( ! class_exists( 'wc4bp_booking' ) ) {
 			define( 'WC4BP_BOOKING_BASENAME', basename( __DIR__ ) );
 			$this->load_plugin_textdomain();
 			require_once WC4BP_BOOKING_CLASSES_PATH . 'resources' . DIRECTORY_SEPARATOR . 'class-tgm-plugin-activation.php';
-			require_once WC4BP_BOOKING_CLASSES_PATH . 'wc4bp_booking_required.php';
+			require_once WC4BP_BOOKING_CLASSES_PATH . 'class-wc4bp-booking-required.php';
 			new wc4bp_booking_required();
 			if ( wc4bp_booking_required::is_wc4bp_active() ) {
 				if ( ! empty( $GLOBALS['wc4bp_loader'] ) ) {
@@ -72,8 +72,9 @@ if ( ! class_exists( 'wc4bp_booking' ) ) {
 					$wc4bp_freemius = $wc4bp::getFreemius();
 					if ( ! empty( $wc4bp_freemius ) && $wc4bp_freemius->is_plan_or_trial__premium_only( 'professional' ) ) {
 						if ( wc4bp_booking_required::is_woo_booking_active() && wc4bp_booking_required::is_woocommerce_active() ) {
+
 							if ( wc4bp_booking_fs::getFreemius()->is_paying_or_trial() ) {
-								require_once WC4BP_BOOKING_CLASSES_PATH . 'wc4bp_booking_manager.php';
+								require_once WC4BP_BOOKING_CLASSES_PATH . 'class-wc4bp-booking-manager.php';
 								new wc4bp_booking_manager();
 							} else {
 								add_action( 'admin_notices', array( $this, 'admin_notice_need_pro' ) );
