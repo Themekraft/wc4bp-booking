@@ -12,21 +12,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class wc4bp_booking_manager {
-	private static $plugin_slug = 'wc4bp_booking';
+class wc4bp_bookings_manager {
+	private static $plugin_slug = 'wc4bp_bookings';
 	protected static $version = '1.0.0';
 	private $end_points;
 
 	public function __construct() {
 		require_once 'class-wc4bp-booking-log.php';
-		new wc4bp_booking_log();
+		new wc4bp_bookings_log();
 		try {
 			//loading_dependency
 			require_once 'class-wc4bp-booking-integration.php';
-			new wc4bp_booking_integration();
+			new wc4bp_bookings_integration();
 
 		} catch ( Exception $ex ) {
-			wc4bp_booking_log::log( array(
+			wc4bp_bookings_log::log( array(
 				'action'         => get_class( $this ),
 				'object_type'    => self::getSlug(),
 				'object_subtype' => 'loading_dependency',

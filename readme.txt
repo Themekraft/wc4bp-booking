@@ -15,7 +15,7 @@ WooCommerce for BuddyPress Booking - Integrate BuddyPress with WooCommerce Booki
 BuddyPress WooCommerce Bookings Integration. With WC4BP Booking you can integrate the popular WooCommerce Bookings Plugin with BuddyPress.
 
 ### Let your Customers Manage there Bookings from there Profile.
-* With WC4BP Booking you can integrate the My Bookings Account Page into the BuddyPres Member Profile Shop as new Tab.
+* With WC4BP Booking you can integrate the My Bookings Account Page into the BuddyPress Member Profile Shop as new Tab.
 
 
 ### Videos

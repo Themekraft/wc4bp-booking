@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class wc4bp_booking_log {
+class wc4bp_bookings_log {
 
     function __construct() {
         add_filter( 'aal_init_roles', array( $this, 'aal_init_roles' ) );
@@ -20,7 +20,7 @@ class wc4bp_booking_log {
 
     public function aal_init_roles( $roles ) {
         $roles_existing          = $roles['manage_options'];
-        $roles['manage_options'] = array_merge( $roles_existing, array( wc4bp_booking_manager::getSlug() ) );
+        $roles['manage_options'] = array_merge( $roles_existing, array( wc4bp_bookings_manager::getSlug() ) );
 
         return $roles;
     }

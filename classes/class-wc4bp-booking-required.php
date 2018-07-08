@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class wc4bp_booking_required {
+class wc4bp_bookings_required {
 
     public function __construct() {
         add_action( 'init', array( $this, 'setup_init' ), 1, 1 );
@@ -24,7 +24,7 @@ class wc4bp_booking_required {
         if ( ! is_admin() ) {
             return;
         }
-        add_action( 'wc4bp_booking_tgmpa_register', array( $this, 'setup_and_check' ) );
+        add_action( 'wc4bp_bookings_tgmpa_register', array( $this, 'setup_and_check' ) );
         add_action( 'in_admin_footer', array( $this, 'remove_woo_footer' ) );
     }
 
@@ -122,31 +122,31 @@ class wc4bp_booking_required {
                 /* translators: 1: plugin name(s). */
                     '<u>WC4BP -> Booking</u> plugin requires the following plugin: %1$s.',
                     '<u>WC4BP -> Booking</u> plugin requires the following plugins: %1$s.',
-                    'wc4bp_booking'
+                    'wc4bp_bookings'
                 ),
                 'notice_can_install_recommended'  => _n_noop(
                 /* translators: 1: plugin name(s). */
                     '<u>WC4BP -> Booking</u> plugin recommends the following plugin: %1$s.',
                     '<u>WC4BP -> Booking</u> plugin recommends the following plugins: %1$s.',
-                    'wc4bp_booking'
+                    'wc4bp_bookings'
                 ),
                 'notice_can_activate_required'    => _n_noop(
                 /* translators: 1: plugin name(s). */
                     'The following is a required plugin for <u>WC4BP -> Booking</u> and is currently inactive: %1$s.',
                     'The following is a required plugins for <u>WC4BP -> Booking</u> and they are currently inactive: %1$s.',
-                    'wc4bp_booking'
+                    'wc4bp_bookings'
                 ),
                 'notice_ask_to_update'            => _n_noop(
                 /* translators: 1: plugin name(s). */
                     'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this plugin: %1$s.',
                     'The following plugins need to be updated to their latest version to ensure maximum compatibility with this plugin: %1$s.',
-                    'wc4bp_booking'
+                    'wc4bp_bookings'
                 ),
             ),
         );
 
         // Call the tgmpa function to register the required required_plugins
-        wc4bp_booking_tgmpa( $required_plugins, $config );
+        wc4bp_bookings_tgmpa( $required_plugins, $config );
     }
 
 }

@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name: WC4BP -> Booking
+ * Plugin Name: WC4BP -> Bookings
  * Plugin URI:   https://github.com/Themekraft/wc4bp-booking
  * Description: WooCommerce for BuddyPress Booking - Integrate BuddyPress with WooCommerce Booking. Get you Bookings inside BuddyPress Profile.
  * Author:      ThemeKraft
  * Author URI: https://themekraft.com/products/woocommerce-buddypress-integration/
  * Version:     1.0.0
  * Licence:     GPLv3
- * Text Domain: wc4bp_booking
+ * Text Domain: wc4bp_bookings
  * Domain Path: /languages
  *
- * @package wc4bp_booking
+ * @package wc4bp_bookings
  *
  *****************************************************************************
  * WC requires at least: 3.4.0
@@ -38,11 +38,11 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( ! class_exists( 'wc4bp_booking' ) ) {
+if ( ! class_exists( 'wc4bp_bookings' ) ) {
 	require_once dirname( __FILE__ ) . '/classes/class-wc4bp-booking-fs.php';
-	new wc4bp_booking_fs();
+	new wc4bp_bookings_fs();
 
-	class wc4bp_booking {
+	class wc4bp_bookings {
 
 		/**
 		 * Instance of this class.
@@ -56,26 +56,26 @@ if ( ! class_exists( 'wc4bp_booking' ) ) {
 		 * Initialize the plugin.
 		 */
 		public function __construct() {
-			define( 'WC4BP_BOOKING_CSS_PATH', plugin_dir_url( __FILE__ ) . 'assets/css/' );
-			define( 'WC4BP_BOOKING_JS_PATH', plugin_dir_url( __FILE__ ) . 'assets/js/' );
-			define( 'WC4BP_BOOKING_VIEW_PATH', dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR );
-			define( 'WC4BP_BOOKING_CLASSES_PATH', dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR );
-			define( 'WC4BP_BOOKING_BASENAME', basename( __DIR__ ) );
+			define( 'wc4bp_bookings_CSS_PATH', plugin_dir_url( __FILE__ ) . 'assets/css/' );
+			define( 'wc4bp_bookings_JS_PATH', plugin_dir_url( __FILE__ ) . 'assets/js/' );
+			define( 'wc4bp_bookings_VIEW_PATH', dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR );
+			define( 'wc4bp_bookings_CLASSES_PATH', dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR );
+			define( 'wc4bp_bookings_BASENAME', basename( __DIR__ ) );
 			$this->load_plugin_textdomain();
-			require_once WC4BP_BOOKING_CLASSES_PATH . 'resources' . DIRECTORY_SEPARATOR . 'class-tgm-plugin-activation.php';
-			require_once WC4BP_BOOKING_CLASSES_PATH . 'class-wc4bp-booking-required.php';
-			new wc4bp_booking_required();
-			if ( wc4bp_booking_required::is_wc4bp_active() ) {
+			require_once wc4bp_bookings_CLASSES_PATH . 'resources' . DIRECTORY_SEPARATOR . 'class-tgm-plugin-activation.php';
+			require_once wc4bp_bookings_CLASSES_PATH . 'class-wc4bp-booking-required.php';
+			new wc4bp_bookings_required();
+			if ( wc4bp_bookings_required::is_wc4bp_active() ) {
 				if ( ! empty( $GLOBALS['wc4bp_loader'] ) ) {
 					/** @var WC4BP_Loader $wc4bp */
 					$wc4bp          = $GLOBALS['wc4bp_loader'];
 					$wc4bp_freemius = $wc4bp::getFreemius();
 					if ( ! empty( $wc4bp_freemius ) && $wc4bp_freemius->is_plan_or_trial__premium_only( 'professional' ) ) {
-						if ( wc4bp_booking_required::is_woo_booking_active() && wc4bp_booking_required::is_woocommerce_active() ) {
+						if ( wc4bp_bookings_required::is_woo_booking_active() && wc4bp_bookings_required::is_woocommerce_active() ) {
 
-							if ( wc4bp_booking_fs::getFreemius()->is_paying_or_trial() ) {
-								require_once WC4BP_BOOKING_CLASSES_PATH . 'class-wc4bp-booking-manager.php';
-								new wc4bp_booking_manager();
+							if ( wc4bp_bookings_fs::getFreemius()->is_paying_or_trial() ) {
+								require_once wc4bp_bookings_CLASSES_PATH . 'class-wc4bp-booking-manager.php';
+								new wc4bp_bookings_manager();
 							} else {
 								add_action( 'admin_notices', array( $this, 'admin_notice_need_pro' ) );
 							}
@@ -92,14 +92,14 @@ if ( ! class_exists( 'wc4bp_booking' ) ) {
 
 		public function admin_notice_need_core_pro() {
 			$class   = 'notice notice-warning';
-			$message = __( 'Need WC4BP -> WooCommerce BuddyPress Integration Professional Plan to work!', 'wc4bp_booking' );
+			$message = __( 'Need WC4BP -> WooCommerce BuddyPress Integration Professional Plan to work!', 'wc4bp_bookings' );
 
 			printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
 		}
 
 		public function admin_notice_need_pro() {
 			$class   = 'notice notice-warning';
-			$message = __( 'WC4BP -> Booking Need Professional Plan to work!', 'wc4bp_booking' );
+			$message = __( 'WC4BP -> Booking Need Professional Plan to work!', 'wc4bp_bookings' );
 
 			printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
 		}
@@ -107,7 +107,7 @@ if ( ! class_exists( 'wc4bp_booking' ) ) {
 		public function admin_notice_need_woo_booking() {
 
 			$class   = 'notice notice-warning';
-			$message = __( 'WC4BP -> Booking Need WooCommerce Booking and Woocommerce! One is not present, please check your dependencies. ', 'wc4bp_booking' );
+			$message = __( 'WC4BP -> Booking Need WooCommerce Booking and Woocommerce! One is not present, please check your dependencies. ', 'wc4bp_bookings' );
 
 			printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
 		}
@@ -130,9 +130,9 @@ if ( ! class_exists( 'wc4bp_booking' ) ) {
 		 * Load the plugin text domain for translation.
 		 */
 		public function load_plugin_textdomain() {
-			load_plugin_textdomain( 'wc4bp_booking', false, basename( dirname( __FILE__ ) ) . '/languages' );
+			load_plugin_textdomain( 'wc4bp_bookings', false, basename( dirname( __FILE__ ) ) . '/languages' );
 		}
 	}
 
-	add_action( 'plugins_loaded', array( 'wc4bp_booking', 'get_instance' ) );
+	add_action( 'plugins_loaded', array( 'wc4bp_bookings', 'get_instance' ) );
 }

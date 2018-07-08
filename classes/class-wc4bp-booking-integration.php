@@ -12,13 +12,13 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class wc4bp_booking_integration {
+class wc4bp_bookings_integration {
 
     public function __construct() {
 
         add_shortcode( 'woo_bookings_page', array( $this, 'wc4bp_my_account_process_shortcode_bookings_page' ) );
         add_shortcode( 'woo_bookings_view_page', array( $this, 'wc4bp_my_account_process_shortcode_bookings_view_page'));
-        add_filter( 'wc4bp_add_endpoint', array( $this, 'wc4bp_booking_menu_items' ) );
+        add_filter( 'wc4bp_add_endpoint', array( $this, 'wc4bp_bookings_menu_items' ) );
         add_filter( 'wc4bp_load_template_path', array( $this, 'load_template_path' ), 99, 2 );
         add_filter( 'wc4bp_members_get_template_directory', array( $this, 'get_template_directory' ), 10, 1 );
         add_filter( 'wc4bp_screen_function', array( $this, 'screen_function' ), 10, 2 );
@@ -26,20 +26,20 @@ class wc4bp_booking_integration {
 
     public function screen_function( $screen_function, $id ) {
         if ( 'bookings' === $id ) {
-            $screen_function = array( $this, 'wc4bp_booking_screen_function' );
+            $screen_function = array( $this, 'wc4bp_bookings_screen_function' );
         }
         if($id === 'checkout'){
 
             if(isset($_GET['change_payment_method'])){
 
-                $screen_function = array( $this, 'wc4bp_booking_screen_function' );
+                $screen_function = array( $this, 'wc4bp_bookings_screen_function' );
             }
         }
 
         return $screen_function;
     }
-    public function wc4bp_booking_screen_function() {
-        bp_core_load_template( apply_filters( 'wc4bp_booking_template', 'shop/member/plugin' ) );
+    public function wc4bp_bookings_screen_function() {
+        bp_core_load_template( apply_filters( 'wc4bp_bookings_template', 'shop/member/plugin' ) );
     }
 
     public function wc4bp_my_account_process_shortcode_bookings_page( $attr, $content ) {
@@ -65,16 +65,16 @@ class wc4bp_booking_integration {
     public function get_template_directory( $dir ) {
         global $bp;
         if ( 'bookings' === $bp->current_action ) {
-            return WC4BP_BOOKING_VIEW_PATH;
+            return wc4bp_bookings_VIEW_PATH;
         }
 
         return $dir;
     }
 
-    public function wc4bp_booking_menu_items( $menu_items ) {
+    public function wc4bp_bookings_menu_items( $menu_items ) {
         // Add our menu item after the Orders tab if it exists, otherwise just add it to the end
         if ( array_key_exists( 'orders', $menu_items ) ) {
-            $menu_items = wc4bp_booking_manager::array_insert_after( 'orders', $menu_items, 'bookings', __( 'Bookings', 'woocommerce-bookings' ) );
+            $menu_items = wc4bp_bookings_manager::array_insert_after( 'orders', $menu_items, 'bookings', __( 'Bookings', 'woocommerce-bookings' ) );
         } else {
             $menu_items['bookings'] = __( 'Bookings', 'woocommerce-bookings' );
         }

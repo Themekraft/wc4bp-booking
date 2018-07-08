@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class wc4bp_booking_fs {
+class wc4bp_bookings_fs {
 
     /**
      * Instance of this class.
@@ -22,24 +22,24 @@ class wc4bp_booking_fs {
     protected static $instance = null;
 
     public function __construct() {
-        if ( $this->wc4bp_booking_fs_is_parent_active_and_loaded() ) {
+        if ( $this->wc4bp_bookings_fs_is_parent_active_and_loaded() ) {
             // If parent already included, init add-on.
-            $this->wc4bp_booking_fs_init();
-        } else if ( $this->wc4bp_booking_fs_is_parent_active() ) {
+            $this->wc4bp_bookings_fs_init();
+        } else if ( $this->wc4bp_bookings_fs_is_parent_active() ) {
             // Init add-on only after the parent is loaded.
-            add_action( 'wc4bp_core_fs_loaded', array( $this, 'wc4bp_booking_fs_init' ) );
+            add_action( 'wc4bp_core_fs_loaded', array( $this, 'wc4bp_bookings_fs_init' ) );
         } else {
             // Even though the parent is not activated, execute add-on for activation / uninstall hooks.
-            $this->wc4bp_booking_fs_init();
+            $this->wc4bp_bookings_fs_init();
         }
     }
 
-    public function wc4bp_booking_fs_is_parent_active_and_loaded() {
+    public function wc4bp_bookings_fs_is_parent_active_and_loaded() {
         // Check if the parent's init SDK method exists.
         return method_exists( 'WC4BP_Loader', 'wc4bp_fs' );
     }
 
-    public function wc4bp_booking_fs_is_parent_active() {
+    public function wc4bp_bookings_fs_is_parent_active() {
         $active_plugins_basenames = get_option( 'active_plugins' );
 
         foreach ( $active_plugins_basenames as $plugin_basename ) {
@@ -53,24 +53,24 @@ class wc4bp_booking_fs {
         return false;
     }
 
-    public function wc4bp_booking_fs_init() {
-        if ( $this->wc4bp_booking_fs_is_parent_active_and_loaded() ) {
+    public function wc4bp_bookings_fs_init() {
+        if ( $this->wc4bp_bookings_fs_is_parent_active_and_loaded() ) {
             // Init Freemius.
             $this->start_freemius();
         }
     }
 
     public function start_freemius() {
-        global $wc4bp_booking_fs;
+        global $wc4bp_bookings_fs;
 
-        if ( ! isset( $wc4bp_booking_fs ) ) {
+        if ( ! isset( $wc4bp_bookings_fs ) ) {
             // Include Freemius SDK.
             require_once WC4BP_ABSPATH_CLASS_PATH . 'includes/freemius/start.php';
 
 	        try {
-		        $wc4bp_booking_fs = fs_dynamic_init( array(
+		        $wc4bp_bookings_fs = fs_dynamic_init( array(
 			        'id'                  => '2225',
-			        'slug'                => 'wc4bp-booking',
+			        'slug'                => 'wc4bp-bookings',
 			        'type'                => 'plugin',
 			        'public_key'          => 'pk_6a342256996424892f2248475ceec',
 			        'is_premium'          => true,
@@ -95,20 +95,20 @@ class wc4bp_booking_fs {
 			        ),
 		        ) );
 	        } catch ( Freemius_Exception $e ) {
-		        $wc4bp_booking_fs = false;
+		        $wc4bp_bookings_fs = false;
 	        }
         }
 
-        return $wc4bp_booking_fs;
+        return $wc4bp_bookings_fs;
     }
 
     /**
      * @return Freemius
      */
     public static function getFreemius() {
-        global $wc4bp_booking_fs;
+        global $wc4bp_bookings_fs;
 
-        return $wc4bp_booking_fs;
+        return $wc4bp_bookings_fs;
     }
 
     /**
